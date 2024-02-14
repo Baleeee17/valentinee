@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #message {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        #yes {
+            background-color: #4CAF50; /* Green */
+            color: white;
+            border: none;
+        }
+        #no {
+            background-color: #f44336; /* Red */
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Will you be my valentine, Maple?</h1>
+<div id="message"></div>
+<button id="yes" class="button">Yes</button>
+<button id="no" class="button">No</button>
+
+<script>
+    const yesButton = document.getElementById('yes');
+    const noButton = document.getElementById('no');
+    const messageDiv = document.getElementById('message');
+    let noClicked = false;
+    let pleaseSayYesClicked = false;
+
+    yesButton.addEventListener('click', () => {
+        if (pleaseSayYesClicked) {
+            yesButton.style.fontSize = '40px';
+            noButton.textContent = 'Are you sure?';
+            pleaseSayYesClicked = false;
+        } else if (noClicked) {
+            yesButton.style.fontSize = '50px';
+            noButton.textContent = 'Okay then :(';
+        } else {
+            messageDiv.textContent = 'Thank you! Happy Valentine\'s Day!';
+        }
+    });
+
+    noButton.addEventListener('click', () => {
+        if (pleaseSayYesClicked) {
+            yesButton.style.fontSize = '45px';
+            noButton.textContent = 'Are you sure?';
+        } else if (noClicked) {
+            yesButton.style.fontSize = '55px';
+            noButton.textContent = 'Okay then :(';
+        } else {
+            yesButton.style.fontSize = '30px';
+            noButton.textContent = 'Please say yes';
+            noClicked = true;
+        }
+    });
+
+    noButton.addEventListener('dblclick', () => {
+        if (noClicked) {
+            pleaseSayYesClicked = true;
+            yesButton.style.fontSize = '35px';
+            noButton.textContent = 'Please say yes';
+        }
+    });
+</script>
+
+</body>
+</html>
